@@ -1,0 +1,395 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Performance optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Fix zoom appearance */
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html, body {
+  @apply bg-background text-foreground antialiased;
+  /* Make text non-copyable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-4;
+  /* Ensure proper scaling */
+  width: 100%;
+  max-width: 72rem;
+}
+
+.genesis-outline-soft {
+  @apply ring-1 ring-border rounded-xl;
+}
+
+/* Enhanced navigation link animations */
+.nav-link-animation {
+  @apply relative overflow-hidden;
+}
+
+.nav-link-animation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-link-animation:hover::before {
+  left: 100%;
+}
+
+.nav-link-animation::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #67e8f9, #06b6d4, #0891b2);
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+}
+
+.nav-link-animation:hover::after {
+  width: 100%;
+}
+
+/* Search bar animations */
+.search-container {
+  @apply relative transition-all duration-300 ease-in-out;
+}
+
+.search-container:focus-within {
+  @apply scale-105;
+}
+
+.search-input {
+  @apply bg-complimentary border border-border rounded-lg pl-4 pr-10 py-2.5 text-sm w-56 
+         focus:outline-none focus:ring-2 focus:ring-cyan-300/50 focus:border-cyan-300/50
+         transition-all duration-300 ease-in-out placeholder:text-foreground/40;
+}
+
+.search-input:focus {
+  @apply w-64 bg-complimentary/80 shadow-lg shadow-cyan-300/10;
+}
+
+.search-icon {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 opacity-60 transition-all duration-300;
+}
+
+.search-container:focus-within .search-icon {
+  @apply opacity-80 scale-110 text-cyan-300;
+}
+
+/* Card hover animations */
+.card-hover {
+  @apply transition-all duration-300 ease-out;
+}
+
+.card-hover:hover {
+  @apply transform scale-[1.02] shadow-xl shadow-black/20;
+}
+
+.card-image {
+  @apply transition-all duration-500 ease-out;
+}
+
+.card-hover:hover .card-image {
+  @apply scale-110;
+}
+
+/* Glass morphism effect */
+.glass {
+  @apply backdrop-blur-xl bg-background/60 border border-white/10;
+}
+
+/* Smooth scrolling for carousels */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  transition: transform 0.3s ease-out;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Stagger animation for lists */
+.stagger-item {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Button hover effects */
+.btn-primary {
+  @apply relative overflow-hidden transition-all duration-300 ease-out;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-cyan-300 via-cyan-400 to-blue-400 bg-clip-text text-transparent;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse effect for active elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(103, 232, 249, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(103, 232, 249, 0.8);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Performance optimizations */
+* {
+  /* Improve performance for animations */
+  will-change: auto;
+}
+
+.card-hover, .floating, .btn-primary {
+  /* Hardware acceleration for smooth animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Enhanced hero carousel animations */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glass effect for hero elements */
+.glass-hero {
+  backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.glow-cyan:hover {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+}
+
+/* Modern hero enhancements */
+.shadow-3xl {
+  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* Glassmorphism effects */
+.glass-modern {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Cute animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Smooth scaling */
+.scale-smooth {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Enhanced glow effects */
+.glow-status {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Sexy hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+/* Animated gradients */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .floating {
+    animation: none;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ring-border {
+    @apply ring-2;
+  }
+  
+  .text-foreground\/60 {
+    @apply text-foreground/80;
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+

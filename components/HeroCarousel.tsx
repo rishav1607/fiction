@@ -138,7 +138,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
     emblaApi.on('select', onSelect)
     onSelect()
 
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
 
   // Auto-play functionality

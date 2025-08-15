@@ -31,6 +31,7 @@ export function Hero({ slides }: { slides: Slide[] }) {
     const onSelect = () => setIndex(emblaApi.selectedScrollSnap())
     emblaApi.on('select', onSelect)
     onSelect()
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
 
   // Auto-play functionality

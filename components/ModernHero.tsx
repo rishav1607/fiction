@@ -166,7 +166,7 @@ export function ModernHero({ slides }: { slides: HeroSlide[] }) {
     emblaApi.on('select', onSelect)
     onSelect()
 
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
 
 

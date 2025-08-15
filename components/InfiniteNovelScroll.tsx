@@ -79,7 +79,7 @@ export function InfiniteNovelScroll() {
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap())
     emblaApi.on('select', onSelect)
     onSelect()
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi, novels.length])
 
   // Generate sample novels data

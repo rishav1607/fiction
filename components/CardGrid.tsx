@@ -34,7 +34,7 @@ export function CardGrid({ title, items }: { title: string; items: GridItem[] })
     const onSelect = () => setIndex(emblaApi.selectedScrollSnap())
     emblaApi.on('select', onSelect)
     onSelect()
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
   return (
     <section className="container py-6">

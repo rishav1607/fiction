@@ -40,7 +40,7 @@ export function Carousel({ items, headingId, labelledBy }: { items: Card[]; head
     const onSelect = () => setIndex(emblaApi.selectedScrollSnap())
     emblaApi.on('select', onSelect)
     onSelect()
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
 
   return (

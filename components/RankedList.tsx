@@ -83,7 +83,7 @@ export function RankedList({ items, title }: { items: RankedItem[]; title: strin
     const onSelect = () => setIndex(emblaApi.selectedScrollSnap())
     emblaApi.on('select', onSelect)
     onSelect()
-    return () => emblaApi.off('select', onSelect)
+    return () => { emblaApi.off('select', onSelect) }
   }, [emblaApi])
   return (
     <section className="container py-8">
